@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ثبت اطلاعات سفارش</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        direction: rtl !important;
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .form-container {
+        max-width: 1200px;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .form-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      @media (min-width: 768px) {
+        form {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        form {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+
+      label {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input,
+      textarea,
+      button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      textarea {
+        resize: vertical;
+        height: 80px;
+      }
+
+      .full-width {
+        grid-column: span 1;
+      }
+
+      @media (min-width: 768px) {
+        .full-width {
+          grid-column: span 2;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .full-width {
+          grid-column: span 3;
+        }
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        grid-column: span 1;
+        transition: background-color 0.3s ease;
+      }
+
+      @media (min-width: 768px) {
+        button {
+          grid-column: span 2;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        button {
+          grid-column: span 3;
+        }
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .date-input {
+        text-align: center;
+        font-family: monospace;
+        letter-spacing: 3px;
+      }
+
+      .date-input::placeholder {
+        text-align: center;
+        letter-spacing: 2px;
+      }
+
+      .delivered {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .delivered label {
+        flex-grow: 1;
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .delivered input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+        .delivered {
+          align-items: flex-start;
+        }
+
+        .delivered input[type="checkbox"] {
+          margin-top: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>فرم ثبت سفارش</h1>
+      <form autocomplete="off">
+        <div>
+          <label for="fullname">نام و نام خانوادگی*</label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            placeholder="نام و نام خانوادگی را وارد کنید"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="phone">شماره تلفن*</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="شماره تلفن را وارد کنید"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="fabric">مشخصات پارچه</label>
+          <input
+            type="text"
+            id="fabric"
+            name="fabric"
+            placeholder="مشخصات پارچه را وارد کنید"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="pants">مشخصات شلوار</label>
+          <input
+            type="text"
+            id="pants"
+            name="pants"
+            placeholder="مشخصات شلوار را وارد کنید"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="shirt">مشخصات پیراهن</label>
+          <input
+            type="text"
+            id="shirt"
+            name="shirt"
+            placeholder="مشخصات پیراهن را وارد کنید"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="fabric_length">متراژ</label>
+          <input
+            type="number"
+            id="fabric_length2"
+            name="fabric_length2"
+            placeholder="متراژ را وارد کنید"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="date">تاریخ تحویل</label>
+          <input
+            type="text"
+            id="date"
+            name="date"
+            placeholder="روز/ماه/سال"
+            class="date-input"
+            autocomplete="off"
+            pattern="\d{2}/\d{2}/\d{4}"
+          />
+        </div>
+
+        <div>
+          <label for="deposit">بیعانه*</label>
+          <input
+            type="number"
+            id="deposit"
+            name="deposit"
+            placeholder="مبلغ بیعانه را وارد کنید"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="wage">مقدار اجرت</label>
+          <input
+            type="number"
+            id="wage"
+            name="wage"
+            placeholder="مقدار اجرت را وارد کنید"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="delivered">
+          <label for="delivered">آیا تحویل داده شده است</label>
+          <input type="checkbox" id="delivered" name="delivered" />
+        </div>
+
+        <div class="full-width">
+          <label for="description">توضیحات</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="توضیحات را وارد کنید"
+            autocomplete="off"
+          ></textarea>
+        </div>
+
+        <button type="submit">ذخیره</button>
+      </form>
+    </div>
+  </body>
+</html>

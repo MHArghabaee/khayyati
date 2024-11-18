@@ -4,8 +4,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>لیست سفارشات</title>
-
     <style>
+        /* استایل‌ها به همان شکل باقی می‌مانند */
         body {
             font-family: Arial, sans-serif;
             direction: rtl;
@@ -181,10 +181,11 @@
 </head>
 <body>
 <div class="list-container">
-    <!-- هدر با دکمه ثبت، جستجو و فیلتر -->
     <div class="list-header">
         <h1>لیست سفارشات ثبت‌شده</h1>
-        <button class="add-button">ثبت سفارش</button>
+        <a href="{% url 'add_order' %}">
+            <button class="add-button">ثبت سفارش</button>
+        </a>
         <div class="search-filter">
             <input type="text" id="search" placeholder="جستجو..."/>
             <select id="filter">
@@ -196,7 +197,6 @@
         </div>
     </div>
 
-    <!-- کانتینر با قابلیت اسکرول -->
     <div class="table-wrapper">
         <table id="orderTable">
             <thead>
@@ -215,9 +215,8 @@
             </tr>
             </thead>
             <tbody>
-            <!-- داده ها -->
-            <tr data-delivered="yes">
-                {% for order in orders %}
+            {% for order in orders %}
+                <tr data-delivered="{% if order.delivered %}yes{% else %}no{% endif %}">
                     <td>{{ order.fullname }}</td>
                     <td>{{ order.phone }}</td>
                     <td>{{ order.fabric }}</td>
@@ -234,15 +233,19 @@
                             خیر
                         {% endif %}
                     </td>
-                {% endfor %}
-                <td>
-                    <div class="action-buttons">
-                        <button class="edit-button">ویرایش</button>
-                        <button class="delete-button" onclick="deleteRow(this)">حذف</button>
-                    </div>
-                </td>
-            </tr>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="{% url 'edit_order' order.id %}">
+                                <button class="edit-button">ویرایش</button>
+                            </a>
+                            <a href="{% url 'delete_order' order.id %}" onclick="return confirmDelete();">
+                                <button class="delete-button">حذف</button>
+                            </a>
+                        </div>
+                    </td>
 
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
@@ -270,11 +273,8 @@
         });
     }
 
-    function deleteRow(button) {
-        if (confirm("آیا مطمئن هستید که می‌خواهید این ردیف را حذف کنید؟")) {
-            const row = button.closest("tr");
-            row.remove();
-        }
+    function confirmDelete() {
+        return confirm("آیا مطمئن هستید که می‌خواهید این سفارش را حذف کنید؟");
     }
 </script>
 </body>

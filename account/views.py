@@ -6,19 +6,18 @@ from django.contrib import messages
 def login_view(request):
     # اگر کاربر وارد شده باشد، به صفحه داشبورد هدایت شود
     if request.user.is_authenticated:
-        return redirect('order_list')  # یا هر صفحه‌ای که می‌خواهید به آن هدایت کنید
+        return redirect('order_list')
 
     # اگر درخواست POST باشد (یعنی فرم ارسال شده باشد)
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
         # احراز هویت کاربر
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "ورود موفقیت‌آمیز بود!")
-            return redirect('order_list')  # هدایت به لیست
+            return redirect('order_list')
         else:
             messages.error(request, "نام کاربری یا رمز عبور اشتباه است.")
 

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ثبت اطلاعات سفارش</title>
-
+    <title>ویرایش سفارش</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -162,8 +161,12 @@
 </head>
 <body>
 <div class="form-container">
-    <h1>فرم ثبت سفارش</h1>
-    <form autocomplete="off" method="post">
+    <h1>فرم ویرایش سفارش</h1>
+    <form
+            action="{% url 'edit_order' order.id %}"
+            method="POST"
+            autocomplete="off"
+    >
         {% csrf_token %}
         <div>
             <label for="fullname">نام و نام خانوادگی*</label>
@@ -171,8 +174,8 @@
                     type="text"
                     id="fullname"
                     name="fullname"
+                    value="{{ order.fullname }}"
                     placeholder="نام و نام خانوادگی را وارد کنید"
-                    autocomplete="off"
                     required
             />
         </div>
@@ -183,8 +186,8 @@
                     type="text"
                     id="phone"
                     name="phone"
+                    value="{{ order.phone }}"
                     placeholder="شماره تلفن را وارد کنید"
-                    autocomplete="off"
                     required
             />
         </div>
@@ -195,8 +198,8 @@
                     type="text"
                     id="fabric"
                     name="fabric"
+                    value="{{ order.fabric }}"
                     placeholder="مشخصات پارچه را وارد کنید"
-                    autocomplete="off"
             />
         </div>
 
@@ -206,8 +209,8 @@
                     type="text"
                     id="pants"
                     name="pants"
+                    value="{{ order.pants }}"
                     placeholder="مشخصات شلوار را وارد کنید"
-                    autocomplete="off"
             />
         </div>
 
@@ -217,8 +220,8 @@
                     type="text"
                     id="shirt"
                     name="shirt"
+                    value="{{ order.shirt }}"
                     placeholder="مشخصات پیراهن را وارد کنید"
-                    autocomplete="off"
             />
         </div>
 
@@ -226,10 +229,10 @@
             <label for="fabric_length">متراژ</label>
             <input
                     type="text"
-                    id="fabric_length2"
-                    name="fabric_length2"
+                    id="fabric_length"
+                    name="fabric_length"
+                    value="{{ order.fabric_length }}"
                     placeholder="متراژ را وارد کنید"
-                    autocomplete="off"
             />
         </div>
 
@@ -239,10 +242,10 @@
                     type="text"
                     id="date"
                     name="date"
+                    value="{{ order.date }}"
                     placeholder="روز/ماه/سال"
                     class="date-input"
-                    autocomplete="off"
-                    {#            pattern="\d{2}/\d{2}/\d{4}"#}
+{#                    pattern="\d{2}/\d{2}/\d{4}"#}
             />
         </div>
 
@@ -252,8 +255,8 @@
                     type="text"
                     id="deposit"
                     name="deposit"
+                    value="{{ order.deposit }}"
                     placeholder="مبلغ بیعانه را وارد کنید"
-                    autocomplete="off"
                     required
             />
         </div>
@@ -264,14 +267,19 @@
                     type="text"
                     id="wage"
                     name="wage"
+                    value="{{ order.wage }}"
                     placeholder="مقدار اجرت را وارد کنید"
-                    autocomplete="off"
             />
         </div>
 
         <div class="delivered">
             <label for="delivered">آیا تحویل داده شده است</label>
-            <input type="checkbox" id="delivered" name="delivered"/>
+            <input
+                    type="checkbox"
+                    id="delivered"
+                    name="delivered"
+                    {% if order.delivered %} checked {% endif %}
+            />
         </div>
 
         <div class="full-width">
@@ -280,11 +288,10 @@
                     id="description"
                     name="description"
                     placeholder="توضیحات را وارد کنید"
-                    autocomplete="off"
-            ></textarea>
+            >{{ order.description }}</textarea>
         </div>
 
-        <button type="submit">ذخیره</button>
+        <button type="submit">ذخیره تغییرات</button>
     </form>
 </div>
 </body>

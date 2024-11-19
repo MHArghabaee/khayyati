@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Order
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 
 @login_required
@@ -48,7 +49,6 @@ def add_order(request):
     return render(request, 'khayyat/add-form.html')
 
 
-from django.shortcuts import get_object_or_404
 
 
 @login_required

@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3562919a-c3cc-47ca-b829-29d2c2ea25f4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/templates/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/account/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khayyat/templates/khayyat/add-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/khayyat/templates/khayyat/add-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khayyat/templates/khayyat/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/khayyat/templates/khayyat/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khayyat/templates/khayyat/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/khayyat/templates/khayyat/update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/khayyat/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/khayyat/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,8 +103,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
-        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.22855.92" />
+        <option value="bundled-python-sdk-b068d85d1acf-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.22855.92" />
       </set>
     </attachedChunks>
   </component>
@@ -118,6 +121,9 @@
       <workItem from="1731948308818" duration="3855000" />
       <workItem from="1731955206096" duration="302000" />
       <workItem from="1731956766838" duration="4109000" />
+      <workItem from="1732032563952" duration="2845000" />
+      <workItem from="1732035762627" duration="1928000" />
+      <workItem from="1732046454955" duration="2000" />
     </task>
     <servers />
   </component>

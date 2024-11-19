@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ویرایش سفارش</title>
+    <title>ویرایش اطلاعات سفارش</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,6 +33,13 @@
             margin-bottom: 20px;
             font-size: 1.5rem;
             color: #333;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         form {
@@ -92,30 +100,26 @@
         }
 
         button {
+            padding: 10px 20px;
             background-color: #007bff;
             color: white;
             border: none;
             cursor: pointer;
             font-weight: bold;
             text-align: center;
-            grid-column: span 1;
             transition: background-color 0.3s ease;
-        }
-
-        @media (min-width: 768px) {
-            button {
-                grid-column: span 2;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            button {
-                grid-column: span 3;
-            }
         }
 
         button:hover {
             background-color: #0056b3;
+        }
+
+        .back-button {
+            background-color: #6c757d;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
         }
 
         .date-input {
@@ -157,141 +161,139 @@
                 margin-top: 5px;
             }
         }
+
+        .submit-container {
+            grid-column: span 3;
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
 <div class="form-container">
-    <h1>فرم ویرایش سفارش</h1>
-    <form
-            action="{% url 'edit_order' order.id %}"
-            method="POST"
-            autocomplete="off"
-    >
+    <div class="form-actions">
+        <h1>ویرایش اطلاعات سفارش</h1>
+        <a href="{% url 'order_list' %}">
+            <button type="button" class="back-button">بازگشت به لیست</button>
+        </a>
+    </div>
+    <form method="post" autocomplete="off" action="{% url 'edit_order' order.id %}">
         {% csrf_token %}
         <div>
             <label for="fullname">نام و نام خانوادگی*</label>
             <input
-                    type="text"
-                    id="fullname"
-                    name="fullname"
-                    value="{{ order.fullname }}"
-                    placeholder="نام و نام خانوادگی را وارد کنید"
-                    required
+                type="text"
+                id="fullname"
+                name="fullname"
+                value="{{ order.fullname }}"
+                required
             />
         </div>
 
         <div>
             <label for="phone">شماره تلفن*</label>
             <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    value="{{ order.phone }}"
-                    placeholder="شماره تلفن را وارد کنید"
-                    required
+                type="text"
+                id="phone"
+                name="phone"
+                value="{{ order.phone }}"
+                required
             />
         </div>
 
         <div>
             <label for="fabric">مشخصات پارچه</label>
             <input
-                    type="text"
-                    id="fabric"
-                    name="fabric"
-                    value="{{ order.fabric }}"
-                    placeholder="مشخصات پارچه را وارد کنید"
+                type="text"
+                id="fabric"
+                name="fabric"
+                value="{{ order.fabric }}"
             />
         </div>
 
         <div>
             <label for="pants">مشخصات شلوار</label>
             <input
-                    type="text"
-                    id="pants"
-                    name="pants"
-                    value="{{ order.pants }}"
-                    placeholder="مشخصات شلوار را وارد کنید"
+                type="text"
+                id="pants"
+                name="pants"
+                value="{{ order.pants }}"
             />
         </div>
 
         <div>
             <label for="shirt">مشخصات پیراهن</label>
             <input
-                    type="text"
-                    id="shirt"
-                    name="shirt"
-                    value="{{ order.shirt }}"
-                    placeholder="مشخصات پیراهن را وارد کنید"
+                type="text"
+                id="shirt"
+                name="shirt"
+                value="{{ order.shirt }}"
             />
         </div>
 
         <div>
             <label for="fabric_length">متراژ</label>
             <input
-                    type="text"
-                    id="fabric_length"
-                    name="fabric_length"
-                    value="{{ order.fabric_length }}"
-                    placeholder="متراژ را وارد کنید"
+                type="text"
+                id="fabric_length"
+                name="fabric_length"
+                value="{{ order.fabric_length }}"
             />
         </div>
 
         <div>
             <label for="date">تاریخ تحویل</label>
             <input
-                    type="text"
-                    id="date"
-                    name="date"
-                    value="{{ order.date }}"
-                    placeholder="روز/ماه/سال"
-                    class="date-input"
-{#                    pattern="\d{2}/\d{2}/\d{4}"#}
+                type="text"
+                id="date"
+                name="date"
+                value="{{ order.date }}"
+                class="date-input"
             />
         </div>
 
         <div>
             <label for="deposit">بیعانه*</label>
             <input
-                    type="text"
-                    id="deposit"
-                    name="deposit"
-                    value="{{ order.deposit }}"
-                    placeholder="مبلغ بیعانه را وارد کنید"
-                    required
+                type="text"
+                id="deposit"
+                name="deposit"
+                value="{{ order.deposit }}"
+                required
             />
         </div>
 
         <div>
             <label for="wage">مقدار اجرت</label>
             <input
-                    type="text"
-                    id="wage"
-                    name="wage"
-                    value="{{ order.wage }}"
-                    placeholder="مقدار اجرت را وارد کنید"
+                type="text"
+                id="wage"
+                name="wage"
+                value="{{ order.wage }}"
             />
         </div>
 
         <div class="delivered">
             <label for="delivered">آیا تحویل داده شده است</label>
             <input
-                    type="checkbox"
-                    id="delivered"
-                    name="delivered"
-                    {% if order.delivered %} checked {% endif %}
+                type="checkbox"
+                id="delivered"
+                name="delivered"
+                {% if order.delivered %} checked {% endif %}
             />
         </div>
 
         <div class="full-width">
             <label for="description">توضیحات</label>
             <textarea
-                    id="description"
-                    name="description"
-                    placeholder="توضیحات را وارد کنید"
+                id="description"
+                name="description"
             >{{ order.description }}</textarea>
         </div>
 
-        <button type="submit">ذخیره تغییرات</button>
+        <div class="submit-container">
+            <button type="submit">ذخیره تغییرات</button>
+        </div>
     </form>
 </div>
 </body>

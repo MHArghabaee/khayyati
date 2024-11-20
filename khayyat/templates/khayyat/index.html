@@ -29,6 +29,7 @@
         .list-header {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 1rem;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
@@ -117,8 +118,13 @@
         }
 
         .edit-button {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
             background-color: #007bff;
             color: white;
+            border: none;
+            font-weight: 700;
+             cursor: pointer;
         }
 
         .edit-button:hover {
@@ -126,8 +132,13 @@
         }
 
         .delete-button {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
             background-color: #dc3545;
             color: white;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         .delete-button:hover {
@@ -184,9 +195,9 @@
             <button class="add-button">ثبت سفارش</button>
         </a>
         <div class="search-filter">
-            <input type="text" id="search" placeholder="جستجو..."/>
+            <input type="text" id="search" placeholder="جستجو..." autocomplete="off"/>
             <select id="filter">
-                <option value="">انتخاب فیلتر</option>
+                <option value="">انتخاب همه</option>
                 <option value="delivered-yes">تحویل شده</option>
                 <option value="delivered-no">تحویل نشده</option>
             </select>
@@ -200,9 +211,6 @@
             <tr>
                 <th>نام و نام خانوادگی</th>
                 <th>شماره تلفن</th>
-                <th>مشخصات پارچه</th>
-                <th>مشخصات شلوار</th>
-                <th>مشخصات پیراهن</th>
                 <th>متراژ</th>
                 <th>تاریخ تحویل</th>
                 <th>بیعانه</th>
@@ -216,9 +224,6 @@
                 <tr data-delivered="{% if order.delivered %}yes{% else %}no{% endif %}">
                     <td>{{ order.fullname }}</td>
                     <td>{{ order.phone }}</td>
-                    <td>{{ order.fabric }}</td>
-                    <td>{{ order.pants }}</td>
-                    <td>{{ order.shirt }}</td>
                     <td>{{ order.fabric_length }}</td>
                     <td>{{ order.date }}</td>
                     <td>{{ order.deposit }}</td>

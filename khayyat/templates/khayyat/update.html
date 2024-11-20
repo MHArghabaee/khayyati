@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ویرایش اطلاعات سفارش</title>
+    <title>ویرایش سفارش</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
             direction: rtl !important;
             background-color: #f9f9f9;
-            padding: 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            flex-direction: column;
         }
 
         .form-container {
@@ -52,11 +52,19 @@
             form {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .full-width {
+                grid-column: span 2;
+            }
         }
 
         @media (min-width: 1024px) {
             form {
                 grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .full-width {
+                grid-column: span 3;
             }
         }
 
@@ -81,20 +89,21 @@
         textarea {
             resize: vertical;
             height: 80px;
+            grid-column: span 1;
         }
 
-        .full-width {
+        textarea.full-width {
             grid-column: span 1;
         }
 
         @media (min-width: 768px) {
-            .full-width {
+            textarea.full-width {
                 grid-column: span 2;
             }
         }
 
         @media (min-width: 1024px) {
-            .full-width {
+            textarea.full-width {
                 grid-column: span 3;
             }
         }
@@ -163,16 +172,47 @@
         }
 
         .submit-container {
-            grid-column: span 3;
-            display: flex;
-            justify-content: center;
+            grid-column: span 1;
+        }
+
+        @media (min-width: 768px) {
+            .submit-container {
+                grid-column: span 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .submit-container {
+                grid-column: span 3;
+            }
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 <div class="form-container">
     <div class="form-actions">
-        <h1>ویرایش اطلاعات سفارش</h1>
+        <h3>ویرایش سفارش</h3>
         <a href="{% url 'order_list' %}">
             <button type="button" class="back-button">بازگشت به لیست</button>
         </a>
@@ -296,5 +336,11 @@
         </div>
     </form>
 </div>
+<footer>
+    <p>
+        طراحی و پیاده‌سازی توسط تیم
+        <a href="https://mr-mohamadmhz.github.io/" target="_blank">ORCA</a>
+    </p>
+</footer>
 </body>
 </html>

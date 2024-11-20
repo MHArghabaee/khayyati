@@ -9,12 +9,12 @@
             font-family: Arial, sans-serif;
             direction: rtl;
             background-color: #f9f9f9;
-            padding: 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            flex-direction: column;
         }
 
         .list-container {
@@ -153,12 +153,33 @@
             color: #666;
             padding: 20px 0;
         }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="list-container">
     <div class="list-header">
-        <h1>لیست سفارشات ثبت‌شده</h1>
+        <h3>لیست سفارشات</h3>
         <a href="{% url 'add_order' %}">
             <button class="add-button">ثبت سفارش</button>
         </a>
@@ -224,7 +245,12 @@
         {% endif %}
     </div>
 </div>
-
+<footer>
+    <p>
+        طراحی و پیاده‌سازی توسط تیم
+        <a href="https://mr-mohamadmhz.github.io/" target="_blank">ORCA</a>
+    </p>
+</footer>
 <script>
     function applyFilter() {
         const searchValue = document.getElementById("search").value.toLowerCase();

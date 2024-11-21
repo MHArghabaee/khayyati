@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ثبت اطلاعات سفارش</title>
+    <title>ثبت سفارش</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
             direction: rtl !important;
             background-color: #f9f9f9;
-            padding: 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            flex-direction: column;
         }
 
         .form-container {
@@ -35,6 +35,13 @@
             color: #333;
         }
 
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
         form {
             display: grid;
             grid-template-columns: 1fr;
@@ -45,11 +52,19 @@
             form {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .full-width {
+                grid-column: span 2;
+            }
         }
 
         @media (min-width: 1024px) {
             form {
                 grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .full-width {
+                grid-column: span 3;
             }
         }
 
@@ -74,49 +89,46 @@
         textarea {
             resize: vertical;
             height: 80px;
+            grid-column: span 1;
         }
 
-        .full-width {
+        textarea.full-width {
             grid-column: span 1;
         }
 
         @media (min-width: 768px) {
-            .full-width {
+            textarea.full-width {
                 grid-column: span 2;
             }
         }
 
         @media (min-width: 1024px) {
-            .full-width {
+            textarea.full-width {
                 grid-column: span 3;
             }
         }
 
         button {
+            padding: 10px 20px;
             background-color: #007bff;
             color: white;
             border: none;
             cursor: pointer;
             font-weight: bold;
             text-align: center;
-            grid-column: span 1;
             transition: background-color 0.3s ease;
-        }
-
-        @media (min-width: 768px) {
-            button {
-                grid-column: span 2;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            button {
-                grid-column: span 3;
-            }
         }
 
         button:hover {
             background-color: #0056b3;
+        }
+
+        .back-button {
+            background-color: #6c757d;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
         }
 
         .date-input {
@@ -158,11 +170,54 @@
                 margin-top: 5px;
             }
         }
+
+        .submit-container {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 768px) {
+            .submit-container {
+                grid-column: span 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .submit-container {
+                grid-column: span 3;
+            }
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
     </style>
+
 </head>
 <body>
 <div class="form-container">
-    <h1>فرم ثبت سفارش</h1>
+    <div class="form-actions">
+        <h3>ثبت سفارش</h3>
+        <a href="{% url 'order_list' %}">
+            <button type="button" class="back-button">بازگشت به لیست</button>
+        </a>
+    </div>
     <form autocomplete="off" method="post">
         {% csrf_token %}
         <div>
@@ -226,7 +281,7 @@
             <label for="fabric_length">متراژ</label>
             <input
                     type="text"
-                    id="fabric_length2"
+                    id="fabric_length"
                     name="fabric_length2"
                     placeholder="متراژ را وارد کنید"
                     autocomplete="off"
@@ -242,7 +297,6 @@
                     placeholder="روز/ماه/سال"
                     class="date-input"
                     autocomplete="off"
-                    {#            pattern="\d{2}/\d{2}/\d{4}"#}
             />
         </div>
 
@@ -284,7 +338,9 @@
             ></textarea>
         </div>
 
-        <button type="submit">ذخیره</button>
+        <div class="submit-container">
+            <button type="submit">ذخیره</button>
+        </div>
     </form>
 </div>
 </body>

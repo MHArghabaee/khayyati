@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>لیست سفارشات</title>
     <style>
-        /* استایل‌ها به همان شکل باقی می‌مانند */
         body {
             font-family: Arial, sans-serif;
             direction: rtl;
             background-color: #f9f9f9;
-            padding: 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            flex-direction: column;
         }
 
         .list-container {
@@ -25,16 +24,15 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            box-sizing: border-box;
         }
 
         .list-header {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 1rem;
             align-items: center;
-            margin-bottom: 20px;
-            gap: 15px;
             flex-wrap: wrap;
+            gap: 15px;
         }
 
         .list-header h1 {
@@ -56,11 +54,6 @@
             font-size: 1rem;
             border-radius: 5px;
             border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .search-filter select {
-            min-width: 150px;
         }
 
         .search-filter button {
@@ -92,7 +85,6 @@
 
         .table-wrapper {
             overflow-x: auto;
-            position: relative;
         }
 
         table {
@@ -105,14 +97,11 @@
         table td {
             padding: 10px;
             border: 1px solid #ccc;
-            font-size: 0.9rem;
-            color: #333;
         }
 
         table th {
             background-color: #007bff;
             color: white;
-            font-weight: bold;
             position: sticky;
             top: 0;
             z-index: 10;
@@ -122,41 +111,20 @@
             background-color: #f9f9f9;
         }
 
-        @media (max-width: 768px) {
-            table th,
-            table td {
-                font-size: 0.8rem;
-                padding: 8px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            table th,
-            table td {
-                font-size: 0.7rem;
-                padding: 6px;
-            }
-        }
-
         .action-buttons {
             display: flex;
             justify-content: center;
             gap: 10px;
         }
 
-        .edit-button,
-        .delete-button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            color: white;
-        }
-
         .edit-button {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
             background-color: #007bff;
+            color: white;
+            border: none;
+            font-weight: 700;
+             cursor: pointer;
         }
 
         .edit-button:hover {
@@ -164,11 +132,30 @@
         }
 
         .delete-button {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
             background-color: #dc3545;
+            color: white;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         .delete-button:hover {
             background-color: #bd2130;
+        }
+
+        .status-icon {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .status-delivered {
+            color: green;
+        }
+
+        .status-not-delivered {
+            color: red;
         }
 
         .no-data {
@@ -177,23 +164,44 @@
             color: #666;
             padding: 20px 0;
         }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="list-container">
     <div class="list-header">
-        <h1>لیست سفارشات ثبت‌شده</h1>
+        <h3>لیست سفارشات</h3>
         <a href="{% url 'add_order' %}">
             <button class="add-button">ثبت سفارش</button>
         </a>
         <div class="search-filter">
-            <input type="text" id="search" placeholder="جستجو..."/>
+            <input type="text" id="search" placeholder="جستجو..." autocomplete="off"/>
             <select id="filter">
-                <option value="">انتخاب فیلتر</option>
+                <option value="">انتخاب همه</option>
                 <option value="delivered-yes">تحویل شده</option>
                 <option value="delivered-no">تحویل نشده</option>
             </select>
-            <button onclick="applyFilter()">فیلتر</button>
+            <button onclick="applyFilter()">اعمال فیلتر</button>
         </div>
     </div>
 
@@ -203,9 +211,6 @@
             <tr>
                 <th>نام و نام خانوادگی</th>
                 <th>شماره تلفن</th>
-                <th>مشخصات پارچه</th>
-                <th>مشخصات شلوار</th>
-                <th>مشخصات پیراهن</th>
                 <th>متراژ</th>
                 <th>تاریخ تحویل</th>
                 <th>بیعانه</th>
@@ -219,19 +224,12 @@
                 <tr data-delivered="{% if order.delivered %}yes{% else %}no{% endif %}">
                     <td>{{ order.fullname }}</td>
                     <td>{{ order.phone }}</td>
-                    <td>{{ order.fabric }}</td>
-                    <td>{{ order.pants }}</td>
-                    <td>{{ order.shirt }}</td>
                     <td>{{ order.fabric_length }}</td>
                     <td>{{ order.date }}</td>
                     <td>{{ order.deposit }}</td>
                     <td>{{ order.wage }}</td>
-                    <td>
-                        {% if order.delivered %}
-                            بله
-                        {% else %}
-                            خیر
-                        {% endif %}
+                    <td class="status-icon {% if order.delivered %}status-delivered{% else %}status-not-delivered{% endif %}">
+                        {% if order.delivered %}✔{% else %}✘{% endif %}
                     </td>
                     <td>
                         <div class="action-buttons">
@@ -243,14 +241,15 @@
                             </a>
                         </div>
                     </td>
-
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        {% if not orders %}
+            <div class="no-data">هیچ سفارشی ثبت نشده است.</div>
+        {% endif %}
     </div>
 </div>
-
 <script>
     function applyFilter() {
         const searchValue = document.getElementById("search").value.toLowerCase();
@@ -265,11 +264,7 @@
                 filterValue === "" || (filterValue === "delivered-yes" && delivered === "yes") ||
                 (filterValue === "delivered-no" && delivered === "no");
 
-            if (matchesSearch && matchesFilter) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
+            row.style.display = matchesSearch && matchesFilter ? "" : "none";
         });
     }
 

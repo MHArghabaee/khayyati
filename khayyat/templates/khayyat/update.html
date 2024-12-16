@@ -222,112 +222,245 @@
         <div>
             <label for="fullname">نام و نام خانوادگی*</label>
             <input
-                type="text"
-                id="fullname"
-                name="fullname"
-                value="{{ order.fullname }}"
-                required
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    value="{{ order.fullname }}"
+                    required
             />
         </div>
 
         <div>
             <label for="phone">شماره تلفن*</label>
             <input
-                type="text"
-                id="phone"
-                name="phone"
-                value="{{ order.phone }}"
-                required
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value="{{ order.phone }}"
+                    required
+            />
+        </div>
+
+        <!-- New Fields for Pants Specifications -->
+        <div>
+            <label for="pants_fabric">پارچه شلوار</label>
+            <input
+                    type="text"
+                    id="pants_fabric"
+                    name="pants_fabric"
+                    value="{{ order.pants_fabric }}"
             />
         </div>
 
         <div>
-            <label for="fabric">مشخصات پارچه</label>
+            <label for="pants_fabric_length">متراژ پارچه شلوار</label>
             <input
-                type="text"
-                id="fabric"
-                name="fabric"
-                value="{{ order.fabric }}"
+                    type="text"
+                    id="pants_fabric_length"
+                    name="pants_fabric_length"
+                    value="{{ order.pants_fabric_length }}"
             />
         </div>
 
         <div>
-            <label for="pants">مشخصات شلوار</label>
+            <label for="pants_length">قد شلوار</label>
             <input
-                type="text"
-                id="pants"
-                name="pants"
-                value="{{ order.pants }}"
+                    type="text"
+                    id="pants_length"
+                    name="pants_length"
+                    value="{{ order.pants_length }}"
             />
         </div>
 
         <div>
-            <label for="shirt">مشخصات پیراهن</label>
+            <label for="pants_waist">کمر شلوار</label>
             <input
-                type="text"
-                id="shirt"
-                name="shirt"
-                value="{{ order.shirt }}"
+                    type="text"
+                    id="pants_waist"
+                    name="pants_waist"
+                    value="{{ order.pants_waist }}"
             />
         </div>
 
         <div>
-            <label for="fabric_length">متراژ</label>
+            <label for="pants_thigh">ران شلوار</label>
             <input
-                type="text"
-                id="fabric_length"
-                name="fabric_length2"
-                value="{{ order.fabric_length }}"
+                    type="text"
+                    id="pants_thigh"
+                    name="pants_thigh"
+                    value="{{ order.pants_thigh }}"
             />
         </div>
 
         <div>
-            <label for="date">تاریخ تحویل</label>
+            <label for="pants_knee">زانو شلوار</label>
             <input
-                type="text"
-                id="date"
-                name="date"
-                value="{{ order.date }}"
-                class="date-input"
+                    type="text"
+                    id="pants_knee"
+                    name="pants_knee"
+                    value="{{ order.pants_knee }}"
             />
         </div>
 
+        <div>
+            <label for="pants_hem">دمپای شلوار</label>
+            <input
+                    type="text"
+                    id="pants_hem"
+                    name="pants_hem"
+                    value="{{ order.pants_hem }}"
+            />
+        </div>
+
+        <div>
+            <label for="pants_crotch">فاق شلوار</label>
+            <input
+                    type="text"
+                    id="pants_crotch"
+                    name="pants_crotch"
+                    value="{{ order.pants_crotch }}"
+            />
+        </div>
+
+        <!-- New Fields for Shirt Specifications -->
+        <div>
+            <label for="shirt_fabric">پارچه پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_fabric"
+                    name="shirt_fabric"
+                    value="{{ order.shirt_fabric }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_fabric_length">متراژ پارچه پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_fabric_length"
+                    name="shirt_fabric_length"
+                    value="{{ order.shirt_fabric_length }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_length">قد پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_length"
+                    name="shirt_length"
+                    value="{{ order.shirt_length }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_shoulder">سرشانه پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_shoulder"
+                    name="shirt_shoulder"
+                    value="{{ order.shirt_shoulder }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_collar">یقه پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_collar"
+                    name="shirt_collar"
+                    value="{{ order.shirt_collar }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_armpit">زیر بغل پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_armpit"
+                    name="shirt_armpit"
+                    value="{{ order.shirt_armpit }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_sleeve">آستین پیراهن</label>
+            <input
+                    type="text"
+                    id="shirt_sleeve"
+                    name="shirt_sleeve"
+                    value="{{ order.shirt_sleeve }}"
+            />
+        </div>
+
+        <div>
+            <label for="shirt_details">جزئیات پیراهن</label>
+            <textarea
+                    id="shirt_details"
+                    name="shirt_details"
+            >{{ order.shirt_details }}</textarea>
+        </div>
+        <div>
+            <label for="entry_date">تاریخ ورود</label>
+            <input
+                    type="text"
+                    id="entry_date"
+                    name="entry_date"
+                    placeholder="روز/ماه/سال"
+                    class="date-input"
+                    autocomplete="off"
+                    value="{{  order.entry_date}}"
+            />
+        </div>
+
+        <div>
+            <label for="delivery_date">تاریخ تحویل</label>
+            <input
+                    type="text"
+                    id="delivery_date"
+                    name="delivery_date"
+                    placeholder="روز/ماه/سال"
+                    class="date-input"
+                    autocomplete="off"
+                    value="{{order.delivery_date }}"
+            />
+        </div>
         <div>
             <label for="deposit">بیعانه*</label>
             <input
-                type="text"
-                id="deposit"
-                name="deposit"
-                value="{{ order.deposit }}"
-                required
+                    type="text"
+                    id="deposit"
+                    name="deposit"
+                    value="{{ order.deposit }}"
+                    required
             />
         </div>
 
         <div>
             <label for="wage">مقدار اجرت</label>
             <input
-                type="text"
-                id="wage"
-                name="wage"
-                value="{{ order.wage }}"
+                    type="text"
+                    id="wage"
+                    name="wage"
+                    value="{{ order.wage }}"
             />
         </div>
 
         <div class="delivered">
             <label for="delivered">آیا تحویل داده شده است</label>
             <input
-                type="checkbox"
-                id="delivered"
-                name="delivered"
-                {% if order.delivered %} checked {% endif %}
+                    type="checkbox"
+                    id="delivered"
+                    name="delivered"
+                    {% if order.delivered %} checked {% endif %}
             />
         </div>
 
         <div class="full-width">
             <label for="description">توضیحات</label>
             <textarea
-                id="description"
-                name="description"
+                    id="description"
+                    name="description"
             >{{ order.description }}</textarea>
         </div>
 

@@ -124,7 +124,7 @@
             color: white;
             border: none;
             font-weight: 700;
-             cursor: pointer;
+            cursor: pointer;
         }
 
         .edit-button:hover {
@@ -211,7 +211,7 @@
             <tr>
                 <th>نام و نام خانوادگی</th>
                 <th>شماره تلفن</th>
-                <th>متراژ</th>
+                <th>تاریخ ورود</th>
                 <th>تاریخ تحویل</th>
                 <th>بیعانه</th>
                 <th>اجرت</th>
@@ -224,8 +224,8 @@
                 <tr data-delivered="{% if order.delivered %}yes{% else %}no{% endif %}">
                     <td>{{ order.fullname }}</td>
                     <td>{{ order.phone }}</td>
-                    <td>{{ order.fabric_length }}</td>
-                    <td>{{ order.date }}</td>
+                    <td>{{ order.entry_date }}</td>
+                    <td>{{ order.delivery_date }}</td>
                     <td>{{ order.deposit }}</td>
                     <td>{{ order.wage }}</td>
                     <td class="status-icon {% if order.delivered %}status-delivered{% else %}status-not-delivered{% endif %}">

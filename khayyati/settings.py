@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # my apps
     'account.apps.LoginConfig',
     'khayyat.apps.IndexConfig',
+    'fileprocessor',
 ]
 
 
